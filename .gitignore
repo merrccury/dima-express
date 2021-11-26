@@ -1,0 +1,21 @@
+# Project exclude paths
+/getaway/app/node_modules/
+/order-microservice/app/node_modules/
+/order-microservice/app/node_modules/gate-executor/gate-executor.d.ts
+/order-microservice/app/node_modules/gate-executor/gate-executor.js
+/order-microservice/app/node_modules/gate-executor/gate-executor.js.map
+/order-microservice/app/node_modules/rolling-stats/rolling-stats.d.ts
+/order-microservice/app/node_modules/rolling-stats/rolling-stats.js
+/order-microservice/app/node_modules/rolling-stats/rolling-stats.js.map
+/order-microservice/app/node_modules/seneca/lib/plugin.d.ts
+/order-microservice/app/node_modules/seneca/lib/plugin.js
+/order-microservice/app/node_modules/seneca/lib/plugin.js.map
+/order-microservice/app/node_modules/seneca/lib/sub.d.ts
+/order-microservice/app/node_modules/seneca/lib/sub.js
+/order-microservice/app/node_modules/seneca/lib/sub.js.map
+/user-microservice/app/node_modules/
+/getaway/app/dist
+/user-microservice/app/dist
+/order-microservice/app/dist
+.idea
+user-microservice/.idea

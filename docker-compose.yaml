@@ -1,0 +1,70 @@
+version: "3.2"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq-dc'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    #    volumes:
+    #      - /home/oem/rabbitmq/data/:/var/lib/rabbitmq/
+    #      - /home/oem/rabbitmq/log/:/var/log/rabbitmq/
+    #  networks:
+    #    - rabbitmq_go_net
+  mongodb:
+    image: mongo
+    container_name: mongodb-host
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+  redis:
+    image: redis
+    container_name: redis-host
+    ports:
+      - "6479:6379"
+  user-service:
+    container_name: user-service-host
+    build: ./user-microservice/.
+    volumes:
+      - ./user-microservice/app:/app
+    env_file:
+      - .env
+    ports:
+      - "5001:5000"
+    links:
+      - rabbitmq
+      - mongodb
+      - redis
+  order-service:
+    container_name: order-service-host
+    build: ./order-microservice/.
+    volumes:
+      - ./order-microservice/app:/app
+    env_file:
+      - .env
+    ports:
+      - "5002:5000"
+    restart: always
+    links:
+      - rabbitmq
+      - mongodb
+      - redis
+  getaway-service:
+    container_name: getaway-service-host
+    build: ./getaway/.
+    volumes:
+      - ./getaway/app:/app
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    links:
+      - rabbitmq
+      - mongodb
+      - redis
+      - user-service
+      - order-service
+volumes:
+  mongodata:

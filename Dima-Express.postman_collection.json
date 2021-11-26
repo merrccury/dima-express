@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "15ebba37-d440-4559-b4a3-d3629d9941b9",
+		"name": "Dima-Express",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getaway /auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getaway /order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getaway /signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getaway /getOrdersCount",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI2YjVkNjY1NjkzNzY3ZTZkYzU1NiIsImlhdCI6MTYzNzc0MTU3NiwiZXhwIjoxNjM3NzQ1MTc2fQ.BTNPQkK3ktm-TzTGvp_Aiolfhvz0LELDITnQcb3q-Vg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/getOrdersCount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"getOrdersCount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getaway /profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI2YjVkNjY1NjkzNzY3ZTZkYzU1NiIsImlhdCI6MTYzNzc0MTU3NiwiZXhwIjoxNjM3NzQ1MTc2fQ.BTNPQkK3ktm-TzTGvp_Aiolfhvz0LELDITnQcb3q-Vg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getaway /orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWUxNWE4NTVlM2YzYjhhZDUzNDc4ZSIsImlhdCI6MTYzNzgyNzI4MSwiZXhwIjoxNjM3ODMwODgxfQ.Ix7YvFlqI9xdARTgXUYKFjmemx6ivdec4DHs_3hqiqQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getaway /order",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWI2YjVkNjY1NjkzNzY3ZTZkYzU1NiIsImlhdCI6MTYzNzc0MTU3NiwiZXhwIjoxNjM3NzQ1MTc2fQ.BTNPQkK3ktm-TzTGvp_Aiolfhvz0LELDITnQcb3q-Vg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

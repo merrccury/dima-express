@@ -1,0 +1,24 @@
+{
+  "name": "user-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/amqplib": "^0.8.2",
+    "@types/redis": "^2.8.32",
+    "@types/seneca": "^2.1.11"
+  },
+  "dependencies": {
+    "amqp-connection-manager": "^3.7.0",
+    "amqplib": "^0.8.0",
+    "mongoose": "^6.0.13",
+    "redis": "^3.1.2",
+    "seneca": "^3.25.0"
+  }
+}
