@@ -15,6 +15,8 @@ export async function signUp(msg: MessagePayload<UserInterface>, reply: (error: 
         email: msg.email
     };
 
+    console.log(user);
+
     const salt = await bcrypt.genSalt(rounds)
 
     user.password = await bcrypt.hash(Buffer.from(user.password), salt);

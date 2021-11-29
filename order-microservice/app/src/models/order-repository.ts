@@ -30,7 +30,7 @@ export class OrderRepository implements OrderRepositoryInterface {
     }
 
     getListOfOrders(userId: string): Promise<Array<OrderInterface>> {
-        return Order.find({customerId: userId}).lean().exec();
+        return Order.find({customerId: userId}).exec();
     }
 
     isOrderExist(orderId: string): Promise<boolean> {
@@ -43,8 +43,8 @@ export class OrderRepository implements OrderRepositoryInterface {
         })
     }
 
-    deleteOrder(orderId: string): Promise<DeleteResult> {
-        return Order.deleteOne({id: orderId}).exec();
+    deleteOrder(orderId: string): Promise<any> {
+        return Order.findByIdAndDelete(orderId).exec();
     }
 
 }

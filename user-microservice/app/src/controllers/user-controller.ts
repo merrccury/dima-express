@@ -4,7 +4,7 @@ import {UserRepository} from "../models/user-repository";
 import {promisify} from "util";
 import {UserInterface} from "../interfaces/user-interface";
 import redis from "redis";
-import {Rabbit} from "../event-driver/rabbit";
+import {MessageQueue} from "../event-driver/message-queue";
 
 const orderService = Seneca();
 orderService.client({
@@ -55,8 +55,8 @@ export async function getProfile(msg: MessagePayload<{ id: string; }>, reply: (e
 }
 
 (async () => {
-    const rabbit = new Rabbit();
-    await rabbit.consume((async msg => {
+    const messageQueue = new MessageQueue();
+    await messageQueue.consume((async msg => {
         if (msg === null)
             return;
         const targetOrder: {

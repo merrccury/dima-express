@@ -3,7 +3,7 @@ import {ConfirmChannel, Message} from "amqplib";
 import ChannelWrapper from "amqp-connection-manager/dist/esm/ChannelWrapper";
 import {IAmqpConnectionManager} from "amqp-connection-manager/dist/esm/AmqpConnectionManager";
 
-export class Rabbit {
+export class MessageQueue {
     constructor( queueName: string = 'update-order-count') {
         this.queueName = queueName;
         this.connection = amqp.connect([`amqp://${process.env.rabbitmq}:${process.env.rabbitMQPort1}`])

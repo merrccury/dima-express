@@ -1,9 +1,9 @@
 import {MessagePayload} from "seneca";
 import {OrderInterface} from "../interfaces/order-interface";
 import {OrderRepository} from "../models/order-repository";
-import {Rabbit} from "../event-driver/rabbit";
+import {MessageQueue} from "../event-driver/message-queue";
 
-const rabbit = new Rabbit();
+const messageQueue = new MessageQueue();
 
 
 const orderRepository = new OrderRepository();
@@ -15,14 +15,14 @@ export async function addOrder(msg: MessagePayload<OrderInterface>, reply: (erro
     };
     try {
         const createdOrder = await orderRepository.save(order);
-        await rabbit.publish("order-added", {
+        messageQueue.publish("order-added", {
             message: "order-added",
             userId: msg.customerId,
             orderId: createdOrder.id
         });
         reply(null, {orderId: createdOrder.id})
     }
-    // @ts-ignore
+        // @ts-ignore
     catch (e: any) {
         reply(e);
     }
@@ -55,7 +55,7 @@ export async function deleteOrder(msg: MessagePayload<{ orderId: string; userId:
             return reply(null, {message: `Order with id ${msg.orderId} not exist`});
         }
         const delResponse = await orderRepository.deleteOrder(msg.orderId)
-        await rabbit.publish("order-deleted", {
+        messageQueue.publish("order-deleted", {
             message: "order-deleted",
             orderId: msg.orderId,
             userId: msg.userId

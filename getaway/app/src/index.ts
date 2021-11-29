@@ -28,11 +28,10 @@ app.post('/signup', signUp);
 app.use(passportJWT.initialize());
 app.use(passportJWT.authenticate('jwt', {session: false}))
 
-app.post('/order', addOrder);
+app.post('/orders', addOrder);
 app.get('/profile', getProfile)
-app.get('/getOrdersCount', getOrdersCount);
-app.get('/order', gelAllOrders);
-app.delete('/order/:orderId', delOrder)
+app.get('/orders', gelAllOrders);
+app.delete('/orders/:orderId', delOrder)
 
 app.listen({
     host: process.env.getawayService,

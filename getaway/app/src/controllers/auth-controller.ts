@@ -1,27 +1,17 @@
 import {Request, Response} from "express";
-import Seneca from "seneca";
+import userService from '../config/seneca-config';
 import {promisify} from 'util';
 import Jwt from '../security/jwt';
-
 const jwt = new Jwt();
 
-const userService = Seneca({
-    log: {level: "none"}
-});
-
-userService.client({
-    host: process.env.userService,
-    port: parseInt(process.env.userPort, 10)
-});
 
 const userActService = promisify(userService.act).bind(userService)
-
 
 export async function logIn(req: Request, res: Response) {
     const {password, email} = req.body;
     if (password === undefined || email === undefined) {
-        return res.send({
-            message: 'Your credential are invalid. try again'
+        return res.status(400).send({
+            message: 'Request parameters are incorrect'
         })
     }
 
@@ -29,13 +19,13 @@ export async function logIn(req: Request, res: Response) {
         const payload: any = await userActService({
             service: "user",
             cmd: "auth",
-            password: password,
-            email: email
+            password,
+            email
         });
         const accessToken = jwt.createAccessToken({id: payload.id});
         res.send({accessToken: accessToken});
     } catch (e) {
-        res.send({
+        res.status(401).send({
             message: 'Your credential are invalid. try again'
         })
     }
@@ -43,22 +33,29 @@ export async function logIn(req: Request, res: Response) {
 
 export async function signUp(req: Request, res: Response) {
     const {firstName, lastName, password, email} = req.body;
+    if (firstName === undefined || lastName === undefined ||
+        password === undefined || email === undefined) {
+        return res.status(400).send({
+            message: 'Request parameters are incorrect'
+        })
+    }
     try {
         const result: any = await userActService({
             service: "user",
             cmd: "signup",
-            password: password,
-            email: email,
-            firstName: firstName,
-            lastName: lastName
+            password,
+            email,
+            firstName,
+            lastName
         });
         const accessToken = jwt.createAccessToken({id: result.id});
         res.send({accessToken: accessToken});
 
     }
-    // @ts-ignore
+        // @ts-ignore
     catch (e: any) {
-        res.send({
+        console.log(e);
+        res.status(409).send({
             message: `User with Email = ${email} already exist`
         })
     }

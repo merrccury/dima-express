@@ -1,21 +1,13 @@
 import {Request, Response} from "express";
-import Seneca from "seneca";
 import {promisify} from "util";
+import userService from '../config/seneca-config';
 
-const userService = Seneca({
-    log: {level: "none"}
-});
-
-userService.client({
-    host: process.env.userService,
-    port: parseInt(process.env.userPort, 10)
-});
 
 const userActService = promisify(userService.act).bind(userService)
 
 export async function getProfile(req: Request, res: Response) {
     if (req.user === undefined)
-        return res.send({
+        return res.status(401).send({
             message: "User is not defined"
         })
     try {
@@ -26,7 +18,7 @@ export async function getProfile(req: Request, res: Response) {
         })
         res.send({profile: result});
     } catch (e) {
-        res.send({
+        res.status(404).send({
             message: 'Cannot get profile'
         })
     }
